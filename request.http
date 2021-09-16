@@ -1,0 +1,41 @@
+
+### Create
+POST http://localhost:3000/api/wilder/create
+Content-Type: application/json
+
+{
+  "name": "Rico",
+  "city" : "Juvisy",
+  "skills": [
+    {"title": "ping", "votes": 10  },
+    {"title": "pong", "votes": 10}
+  ]
+}
+
+### Read
+
+GET http://localhost:3000/api/wilder/read
+
+### Update
+PUT http://localhost:3000/api/wilder/update
+Content-Type: application/json
+
+{
+  "_id": "6141e7940c41ec1296404040",
+  "name" : "Camille"
+}
+
+### Delete
+DELETE http://localhost:3000/api/wilder/delete HTTP/1.1
+Content-Type: application/json
+
+{
+  "_id": "6141fe18d7bd47ca6072a1de"
+}
+
+### 404
+GET http://localhost:3000/api/ HTTP/1.1
+
+
+
+
