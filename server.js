@@ -1,23 +1,17 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
-const WildersControllers = require("./controllers/Wilders");
-const { runAsyncWrapper } = require('./utils/runAsyncWrapper')
+
+const { init, debug } = require("./db/database");
+const api = require("./router");
+
 
 const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 1234;
 
-//? Debug
-mongoose.set('debug', true);
-
 //* Connection db mongo
-mongoose
-  .connect("mongodb://127.0.0.1:27017/wilderdb", {
-    autoIndex: true,
-  })
-  .then(() => console.log("Connected to database"))
-  .catch((err) => console.log(err));
+init();
+debug();
 
 // Test route
 app.get("/", (_, res) => {
@@ -25,10 +19,7 @@ app.get("/", (_, res) => {
 });
 
 // Routes
-app.post("/api/wilder", runAsyncWrapper(WildersControllers.create))
-app.get("/api/wilder", runAsyncWrapper(WildersControllers.read))
-app.put("/api/wilder", runAsyncWrapper(WildersControllers.update))
-app.delete("/api/wilder", runAsyncWrapper(WildersControllers.delete))
+app.use('/api', api)
 
 // 404
 app.use((_,res) => res.status(404).json('No match any page with this request'))
