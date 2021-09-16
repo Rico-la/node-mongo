@@ -25,10 +25,10 @@ app.get("/", (_, res) => {
 });
 
 // Routes
-app.post("/api/wilder/create", runAsyncWrapper(WildersControllers.create))
-app.get("/api/wilder/read", runAsyncWrapper(WildersControllers.read))
-app.put("/api/wilder/update", runAsyncWrapper(WildersControllers.update))
-app.delete("/api/wilder/delete", runAsyncWrapper(WildersControllers.delete))
+app.post("/api/wilder", runAsyncWrapper(WildersControllers.create))
+app.get("/api/wilder", runAsyncWrapper(WildersControllers.read))
+app.put("/api/wilder", runAsyncWrapper(WildersControllers.update))
+app.delete("/api/wilder", runAsyncWrapper(WildersControllers.delete))
 
 // 404
 app.use((_,res) => res.status(404).json('No match any page with this request'))
